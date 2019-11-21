@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const validator = require("email-validator");
+
 
 const profileSchema = new Schema({
   username: { type: String, unique: true },
@@ -8,7 +10,7 @@ const profileSchema = new Schema({
   lastName: { type: String },
   age: { type: String },
   tel: { type: Number },
-  gender: { type: Boolean }
+  gender: { type: Boolean },
 });
 
 module.exports = mongoose.model('profile', profileSchema)

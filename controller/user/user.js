@@ -27,9 +27,9 @@ module.exports.signIn = async (req, res) => {
   let data = await user.findOne({ username: req.body.username, password: req.body.password })
   jwt.sign({ data }, 'Fri13th', { expiresIn: '1h' }, (err, token) => {
     if (data) {
-      res.send({ status: { code: 0, message: 'Login Successful', token: token } })
+      res.send({ status: { code: 1, message: 'Login Successful', token: token } })
     } else {
-      res.send({ status: { code: 1, message: 'Username or Password is Wrong' } })
+      res.send({ status: { code: 0, message: 'Username or Password is Wrong' } })
     }
   })
 }
@@ -51,7 +51,7 @@ module.exports.signUp = (req, res) => {
 
   Profile.save()
   User.save()
-  jwt.sign({ User }, 'Fri13th', { expiresIn: '1440s' }, (err, token) => {
+  jwt.sign({ User }, 'Fri13th', { expiresIn: '1h' }, (err, token) => {
     if (err) {
       res.send({ status: { code: 1, message: 'Failed' } })
     }
